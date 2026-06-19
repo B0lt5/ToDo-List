@@ -5,12 +5,42 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>To-Do List App</title>
         <link rel="stylesheet" href="toDo.css">
+        <link rel="website icon" href="assets/browser-icon.png">
+        <script src="https://kit.fontawesome.com/8e0278b98b.js" crossorigin="anonymous"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Mozilla+Text:wght@200..700&display=swap" rel="stylesheet">
     </head>
     <body>
-        <input type="text" id="taskInput" placeholder="Enter a new task">
-        <button id="addTaskButton">Add Task</button>
-        <p id="taskCounter"></p>
-        <ul id="taskList"></ul>
+        <div class="main-container">
+            <div class="title">
+                <h1>To-Do List</h1>
+            </div>
+
+            <div class="list-container">
+                <div class="input-container">
+                    <input type="text" id="taskInput" placeholder="Enter a new task">
+                    <button id="addTaskButton">Add Task</button>
+                </div>
+                <ul id="taskList"></ul>
+            </div>
+
+            <div class="counter-container">
+                <p id="taskCounter"></p>
+                <p id="completedTasks"></p>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/kitan-ayoola-1471193a1/" target="_blank"><i class="fa-brands fa-linkedin-in fa-1x"></i></a>
+                    <a href="https://github.com/B0lt5" target="_blank"><i class="fa-brands fa-github fa-1x"></i></a>
+                    <a href="https://x.com/oluwakitan17466" target="_blank"><i class="fa-brands fa-x-twitter fa-1x"></i></a>
+                </div>
+                <p>&copy; 2025 KT</p>
+            </div>
+        </footer>
 
         <script src="toDoList.js"></script>
     </body>
