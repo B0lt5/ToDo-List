@@ -3,6 +3,7 @@ const addTaskButton = document.getElementById('addTaskButton');
 const taskList = document.getElementById('taskList');
 const taskCounter = document.getElementById('taskCounter');
 const completedCounter = document.getElementById('completedTasks');
+const deleteAllButton = document.getElementById('deleteAllButton');
 let taskCount = 0;
 let completedCount = 0;
 
@@ -30,6 +31,14 @@ function addTask() {
             taskCount--;
             taskCounter.textContent = `Total Tasks: ${taskCount}`;
         });
+        deleteAllButton.addEventListener('click', () => {
+            taskList.innerHTML = '';
+            deleteAllButton.style.display = 'none';
+            taskCount = 0;
+            completedCount = 0;
+            taskCounter.style.display = 'none';
+            completedCounter.style.display = 'none';
+        });
         newTask.appendChild(checkButton);
         newTask.appendChild(newTaskText);
         newTask.appendChild(deleteButton);
@@ -37,13 +46,21 @@ function addTask() {
         taskInput.value = '';
         taskCount++;
         taskCounter.textContent = `Total Tasks: ${taskCount}`;
+        taskCounter.style.display = 'block';
     }
 
     checkButton.addEventListener('change', () => {
         newTaskText.classList.toggle('completed');
         completedCount = document.querySelectorAll('.completed').length;
         completedCounter.textContent = `Completed: ${completedCount}`;
+        completedCounter.style.display = 'block';
     });
+
+    if (taskCount >= 2) {
+        deleteAllButton.style.display = 'block';
+    } else {
+        deleteAllButton.style.display = 'none';
+    }
 };
 
 addTaskButton.addEventListener('click', addTask);

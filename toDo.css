@@ -63,7 +63,7 @@ input:focus {
     border-color: #EA00D9;
 }
 
-#addTaskButton, .delete-button {
+#addTaskButton, .delete-button, #deleteAllButton {
     padding: 10px 20px;
     font-size: 15px;
     border-radius: 10px;
@@ -75,7 +75,7 @@ input:focus {
     cursor: pointer;
 }
 
-#addTaskButton:hover, .delete-button:hover {
+#addTaskButton:hover, .delete-button:hover, #deleteAllButton:hover {
     background-color: #EA00D9;
     color: #0B0A4E;
     transform: translateY(-5px);
@@ -104,12 +104,12 @@ input:focus {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 10px;
     padding: 10px;
-    border: 1.5px solid #7C13A4;
-    border-radius: 10px;
-    background-color: rgba(234, 0, 217, 0.05);
-    box-shadow: 0 0 10px rgba(124, 19, 164, 0.2);
+    /* margin-bottom: 10px; */
+    /* border: 1.5px solid #7C13A4; */
+    /* border-radius: 10px; */
+    /* background-color: rgba(234, 0, 217, 0.05); */
+    /* box-shadow: 0 0 10px rgba(124, 19, 164, 0.2); */
 }
 
 #taskList li span {
@@ -122,10 +122,15 @@ input:focus {
 .counter-container {
     display: flex;
     gap: 20px;
+    margin-top: 10px;
 }
 
 .completed {
     text-decoration: line-through;
+}
+
+#taskCounter, #completedTasks, #deleteAllButton {
+    display: none;
 }
 
 .footer {
@@ -137,10 +142,18 @@ input:focus {
     background: linear-gradient(135deg, #1a0a3a 0%, #0B0A4E 50%, #1a0a3a 100%);
 }
 
+.footer .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* gap: 20px; */
+}
+
 .social-links {
     display: flex;
     justify-content: center;
     gap: 20px;
+    margin: 0 auto;
 }
 
 .social-links a {
@@ -160,6 +173,7 @@ input:focus {
 .footer p {
     color: #EA00D9;
     text-shadow: 0 0 10px #EA00D9, 0 0 20px #EA00D9, 0 0 30px #7C13A4;
-    margin-top: 10px;
+    margin: 0;
     font-size: 14px;
+    margin-left: 30px;
 }
