@@ -13,14 +13,28 @@ function toTitleCase(str) {
   }).join(' ');
 }
 
+function updateCounters() {
+    taskCounter.textContent = `Total Tasks: ${taskCount}`;
+    taskCounter.style.display = taskCount > 0 ? 'block' : 'none';
+
+    const completedTasks = document.querySelectorAll('.line-through');
+    completedCount = completedTasks.length;
+    completedCounter.textContent = `Completed: ${completedCount}`;
+    completedCounter.style.display = completedCount > 0 ? 'block' : 'none';
+    
+    deleteAllButton.style.display = taskCount >= 2 ? 'block' : 'none';
+}
+
 function addTask() {
     const usrTask = taskInput.value;
     const newTask = document.createElement('li');
+    newTask.classList.add('flex', 'items-center', 'justify-between', 'p-[10px]');
     const newTaskText = document.createElement('span');
+    newTaskText.classList.add('text-[#2AAEB6]', 'flex-grow', 'ml-2.5', 'text-lg');
     const checkButton = document.createElement('input');
     checkButton.type = 'checkbox';
     const deleteButton = document.createElement('button');
-    deleteButton.classList.add('delete-button');
+    deleteButton.classList.add('px-[20px]', 'py-[10px]', 'text-[15px]', 'bg-[#0B0A4E]', 'text-[#EA00D9]', 'border-2', 'border-[#EA00D9]', 'rounded-[10px]', 'shadow-[0_0_10px_rgba(234,0,217,0.4)]', 'transition-all', 'duration-300','hover:bg-[#EA00D9]', 'hover:text-[#0B0A4E]', 'hover:-translate-y-1', 'hover:[text-shadow:0_0_10px_rgba(234,0,217,0.4)]');
     if (usrTask === '') {
         alert('Please enter a task!');
     } else {
@@ -29,15 +43,14 @@ function addTask() {
         deleteButton.addEventListener('click', () => {
             newTask.remove();
             taskCount--;
-            taskCounter.textContent = `Total Tasks: ${taskCount}`;
+            updateCounters();
         });
         deleteAllButton.addEventListener('click', () => {
             taskList.innerHTML = '';
             deleteAllButton.style.display = 'none';
             taskCount = 0;
             completedCount = 0;
-            taskCounter.style.display = 'none';
-            completedCounter.style.display = 'none';
+            updateCounters();
         });
         newTask.appendChild(checkButton);
         newTask.appendChild(newTaskText);
@@ -45,22 +58,13 @@ function addTask() {
         taskList.appendChild(newTask);
         taskInput.value = '';
         taskCount++;
-        taskCounter.textContent = `Total Tasks: ${taskCount}`;
-        taskCounter.style.display = 'block';
+        updateCounters();
     }
 
     checkButton.addEventListener('change', () => {
-        newTaskText.classList.toggle('completed');
-        completedCount = document.querySelectorAll('.completed').length;
-        completedCounter.textContent = `Completed: ${completedCount}`;
-        completedCounter.style.display = 'block';
+        newTaskText.classList.toggle('line-through');
+        updateCounters();
     });
-
-    if (taskCount >= 2) {
-        deleteAllButton.style.display = 'block';
-    } else {
-        deleteAllButton.style.display = 'none';
-    }
 };
 
 addTaskButton.addEventListener('click', addTask);
