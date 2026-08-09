@@ -3,3 +3,87 @@
     font-optical-sizing: auto;
     font-style: normal;
 }
+
+/* Neon checkbox */
+.neon-checkbox {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    border: 2px solid #2AAEB6;
+    border-radius: 5px;
+    background: rgba(11, 10, 78, 0.6);
+    box-shadow: 0 0 6px rgba(42, 174, 182, 0.4);
+    cursor: pointer;
+    display: inline-grid;
+    place-content: center;
+    transition: all 0.2s ease;
+}
+
+.neon-checkbox:hover {
+    border-color: #EA00D9;
+    box-shadow: 0 0 10px rgba(42, 174, 182, 0.7);
+}
+
+.neon-checkbox:checked {
+    background-color: #EA00D9;
+    border-color: #EA00D9;
+    box-shadow: 0 0 12px rgba(234, 0, 217, 0.8);
+}
+
+.neon-checkbox:checked::after {
+    content: '✓';
+    color: #0B0A4E;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.neon-checkbox:focus-visible {
+    outline: 2px solid #2AAEB6;
+    outline-offset: 2px;
+}
+
+/* Inline edit input */
+.edit-input {
+    flex-grow: 1;
+    margin-left: 10px;
+    padding: 4px 8px;
+    font-size: 1.125rem;
+    font-family: inherit;
+    color: #2AAEB6;
+    background: #080A4E;
+    border: 2px solid #EA00D9;
+    border-radius: 8px;
+    outline: none;
+    box-shadow: 0 0 10px rgba(234, 0, 217, 0.4);
+}
+
+/* Drag & drop feedback */
+#taskList li.dragging {
+    opacity: 0.4;
+    outline: 2px dashed #EA00D9;
+    outline-offset: -2px;
+    border-radius: 8px;
+}
+
+#taskList li.drag-over {
+    outline: 2px dashed #2AAEB6;
+    outline-offset: -2px;
+    border-radius: 8px;
+}
+
+/* Inline validation */
+#validationMessage {
+    display: none;
+}
+
+#validationMessage.visible {
+    display: block;
+}
+
+#taskInput.input-error {
+    border-color: #f87171;
+    box-shadow: 0 0 12px rgba(248, 113, 113, 0.5);
+}

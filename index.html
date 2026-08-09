@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>To-Do List App</title>
         <link rel="stylesheet" href="toDo.css">
-        <link rel="website icon" href="assets/browser-icon.png">
+        <link rel="icon" href="assets/browser-icon.png">
         <script src="https://kit.fontawesome.com/8e0278b98b.js" crossorigin="anonymous"></script>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,10 +20,12 @@
 
             <div class="grid justify-center border-2 border-[#2AAEB6] rounded-[10px] w-[500px] h-auto bg-[rgba(11, 10, 78, 0.6)] shadow-[0_0_20px_rgba(42, 174, 182, 0.3),_inset_0_0_20px_rgba(42, 174, 182, 0.1)] p-[1rem]">
                 <ul id="taskList" class="pl-0 max-h-[200px] overflow-auto"></ul>
+                <p id="emptyState" class="hidden text-[#2AAEB6] text-center py-[10px] text-sm tracking-wide">No tasks yet.</p>
                 <div class="flex align-items-center gap-2.5 p-4">
-                    <input type="text" id="taskInput" class="px-[10px] py-[10px] rounded-[10px] border-2 border-[#2AAEB6] bg-[#080A4E] text-[#2AAEB6] focus:outline-none focus:border-[#EA00D9] focus:ring-2 focus:ring-pink-500/50" placeholder="Enter a new task">
+                    <input type="text" id="taskInput" class="task-input px-[10px] py-[10px] rounded-[10px] border-2 border-[#2AAEB6] bg-[#080A4E] text-[#2AAEB6] focus:outline-none focus:border-[#EA00D9] focus:ring-2 focus:ring-pink-500/50" placeholder="Enter a new task">
                     <button id="addTaskButton" class="px-[20px] py-[10px] rounded-[10px] bg-[#080A4E] text-[#EA00D9] border-[#EA00D9] border-2 shadow-[0_0_10px_rgba(234,_0,_217,_0.4)] transition-all duration-300 hover:bg-[#EA00D9] hover:text-[#0B0A4E] hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(234,_0,_217,_0.8),_0_6px_20px_rgba(234,_0,_217,_0.6)]">Add Task</button>
                 </div>
+                <p id="validationMessage" class="hidden text-red-400 text-sm text-center m-0"></p>
             </div>
 
             <div class="flex gap-[20px] mt-[10px]">
@@ -35,8 +37,9 @@
 
         <footer class="text-[#2AAEB6] text-center py-[20px] border-t-2 border-t-[#2AAEB6] shadow-[0_-5px_15px_rgba(42,174,182,0.2)] bg-[linear-gradient(135deg,#1a0a3a_0%,#0B0A4E_50%,#1a0a3a_100%)]">
             <div class="flex items-center justify-between">
-                <p class="text-[#EA00D9] [text-shadow:_0_0_10px_#EA00D9,_0_0_20px_#EA00D9,_0_0_30px_#7C13A4] m-0 text-sm ml-[30px]">&copy; 2026 KT</p>
+                <p class="text-[#EA00D9] [text-shadow:_0_0_10px_#EA00D9,_0_0_20px_#EA00D9,_0_0_30px_#7C13A4] m-0 text-sm ml-[30px]">&copy; <span id="footerYear">2026</span> KT</p>
                 <div class="flex justify-center gap-[20px] mx-auto">
+                    <a href="https://kt-portfolio-website.vercel.app/" target="_blank" class="text-[#2AAEB6] no-underline m-[10px] text-md transition-all duration-300 hover:text-[#EA00D9] hover:-translate-y-1 hover:[text-shadow:0_0_10px_#EA00D9]"><i class="fa-solid fa-globe fa-1x"></i></a>
                     <a href="https://www.linkedin.com/in/kitan-ayoola-1471193a1/" target="_blank" class="text-[#2AAEB6] no-underline m-[10px] text-md transition-all duration-300 hover:text-[#EA00D9] hover:-translate-y-1 hover:[text-shadow:0_0_10px_#EA00D9]"><i class="fa-brands fa-linkedin-in fa-1x"></i></a>
                     <a href="https://github.com/B0lt5" target="_blank" class="text-[#2AAEB6] no-underline m-[10px] text-md transition-all duration-300 hover:text-[#EA00D9] hover:-translate-y-1 hover:[text-shadow:0_0_10px_#EA00D9]"><i class="fa-brands fa-github fa-1x"></i></a>
                     <a href="https://x.com/oluwakitan17466" target="_blank" class="text-[#2AAEB6] no-underline m-[10px] text-md transition-all duration-300 hover:text-[#EA00D9] hover:-translate-y-1 hover:[text-shadow:0_0_10px_#EA00D9]"><i class="fa-brands fa-x-twitter fa-1x"></i></a>
