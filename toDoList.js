@@ -45,12 +45,13 @@ function saveTasks() {
 function updateCounters() {
     const taskCount = tasks.length;
     const completedCount = tasks.filter(task => task.completed).length;
+    const progressPercent = taskCount > 0 ? Math.round((completedCount / taskCount) * 100) : 0;
 
-    taskCounter.textContent = `Total Tasks: ${taskCount}`;
-    taskCounter.style.display = taskCount > 0 ? 'block' : 'none';
-
+    taskCounter.textContent = `Total: ${taskCount}`;
     completedCounter.textContent = `Completed: ${completedCount}`;
-    completedCounter.style.display = completedCount > 0 ? 'block' : 'none';
+
+    // Progress bar width
+    progressBar.style.width = `${progressPercent}%`;
 
     deleteAllButton.style.display = taskCount >= 2 ? 'block' : 'none';
 
@@ -162,10 +163,10 @@ function setupDragAndDrop(newTask, task) {
 
 function createTaskElement(task) {
     const newTask = document.createElement('li');
-    newTask.classList.add('flex', 'items-center', 'justify-between', 'p-[10px]');
+    newTask.classList.add('flex', 'items-center', 'justify-between', 'gap-2', 'sm:gap-4', 'p-2', 'sm:p-[10px]');
 
     const newTaskText = document.createElement('span');
-    newTaskText.classList.add('text-[#2AAEB6]', 'flex-grow', 'ml-2.5', 'text-lg', 'cursor-pointer', 'select-none');
+    newTaskText.classList.add('text-[#2AAEB6]', 'flex-grow', 'ml-1.5', 'sm:ml-2.5', 'text-base', 'sm:text-lg', 'cursor-pointer', 'select-none', 'break-words', 'min-w-0');
     newTaskText.textContent = task.text;
     if (task.completed) {
         newTaskText.classList.add('line-through');
@@ -181,6 +182,12 @@ function createTaskElement(task) {
         if (found) {
             found.completed = checkButton.checked;
             newTaskText.classList.toggle('line-through', found.completed);
+            if (found.completed) {
+                newTaskText.classList.add('completed-animating');
+                setTimeout(() => newTaskText.classList.remove('completed-animating'), 600);
+            } else {
+                newTaskText.classList.remove('completed-animating');
+            }
             saveTasks();
             updateCounters();
         }
@@ -189,7 +196,7 @@ function createTaskElement(task) {
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'Delete';
     deleteButton.setAttribute('aria-label', `Delete "${task.text}"`);
-    deleteButton.classList.add('px-[20px]', 'py-[10px]', 'text-[15px]', 'bg-[#0B0A4E]', 'text-[#EA00D9]', 'border-2', 'border-[#EA00D9]', 'rounded-[10px]', 'shadow-[0_0_10px_rgba(234,0,217,0.4)]', 'transition-all', 'duration-300','hover:bg-[#EA00D9]', 'hover:text-[#0B0A4E]', 'hover:-translate-y-1', 'hover:[text-shadow:0_0_10px_rgba(234,0,217,0.4)]');
+    deleteButton.classList.add('shrink-0', 'px-3', 'py-1.5', 'sm:px-[20px]', 'sm:py-[10px]', 'text-xs', 'sm:text-[15px]', 'bg-[#0B0A4E]', 'text-[#EA00D9]', 'border-2', 'border-[#EA00D9]', 'rounded-[10px]', 'shadow-[0_0_10px_rgba(234,0,217,0.4)]', 'transition-all', 'duration-300','hover:bg-[#EA00D9]', 'hover:text-[#0B0A4E]', 'hover:-translate-y-1', 'hover:[text-shadow:0_0_10px_rgba(234,0,217,0.4)]');
     deleteButton.addEventListener('click', () => {
         tasks = tasks.filter(t => t.id !== task.id);
         saveTasks();

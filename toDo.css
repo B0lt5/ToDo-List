@@ -45,9 +45,19 @@
     outline-offset: 2px;
 }
 
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 8px #EA00D9, 0 0 16px #EA00D9; }
+  50% { box-shadow: 0 0 16px #EA00D9, 0 0 32px #EA00D9, 0 0 48px #EA00D9; }
+}
+
+#addTaskButton:hover {
+    animation: pulse-glow 1.5s ease-in-out infinite;
+}
+
 /* Inline edit input */
 .edit-input {
     flex-grow: 1;
+    min-width: 0;
     margin-left: 10px;
     padding: 4px 8px;
     font-size: 1.125rem;
@@ -87,3 +97,62 @@
     border-color: #f87171;
     box-shadow: 0 0 12px rgba(248, 113, 113, 0.5);
 }
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* Flicker effect for task completion */
+@keyframes flicker-off {
+  0%   { opacity: 1;   text-shadow: 0 0 8px currentColor; }
+  20%  { opacity: 0.2; }
+  40%  { opacity: 1;   text-shadow: 0 0 8px currentColor; }
+  60%  { opacity: 0.1; }
+  80%  { opacity: 0.6; }
+  100% { opacity: 0.5; text-shadow: none; }
+}
+
+.completed-animating {
+  animation: flicker-off 0.6s steps(6, end) forwards;
+}
+
+/* Footer icon neon flicker animation on hover */
+@keyframes footer-flicker {
+  0% {
+    color: #2AAEB6;
+    text-shadow: none;
+    opacity: 0.8;
+  }
+  15% {
+    color: #EA00D9;
+    text-shadow: 0 0 6px #EA00D9;
+    opacity: 1;
+  }
+  30% {
+    color: #2AAEB6;
+    text-shadow: none;
+    opacity: 0.3;
+  }
+  45% {
+    color: #EA00D9;
+    text-shadow: 0 0 10px #EA00D9, 0 0 20px #EA00D9;
+    opacity: 1;
+  }
+  60% {
+    color: #EA00D9;
+    text-shadow: 0 0 4px #EA00D9;
+    opacity: 0.6;
+  }
+  75%, 100% {
+    color: #EA00D9;
+    text-shadow: 0 0 10px #EA00D9, 0 0 20px #EA00D9, 0 0 30px #7C13A4;
+    opacity: 1;
+  }
+}
+
+footer a:hover i {
+  animation: footer-flicker 0.5s ease-in-out forwards;
+}
+
+/* End of file */
